@@ -33,7 +33,7 @@ export default function Slider() {
             }
             auto();
         }
-        
+
         return () => clearInterval(slideInterval)
     }, [currentSlide, intervalTime, autoScroll]);
 
@@ -47,7 +47,7 @@ export default function Slider() {
                     const { image, heading, desc } = slide;
 
                     return (
-                        <div key={index} className={index === currentSlide ? "slide current" : "clide"}>
+                        <div key={index} className={index === currentSlide ? "slide current" : "slide"}>
                             {index === currentSlide && (
                                 <>
                                     <img src={image} alt="slide" />
