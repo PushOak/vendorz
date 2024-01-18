@@ -35,13 +35,13 @@ const registerUser = asyncHandler(async (req, res) => {
         name,
         email,
         password,
-    })
+    });
 
     // Generate token
     const token = generateToken(user._id)
 
     if (user) {
-        const { _id, name, email } = user;
+        const { _id, name, email, role } = user;
 
         res.cookie("token", token, {
             path: "/",
@@ -49,7 +49,8 @@ const registerUser = asyncHandler(async (req, res) => {
             expires: new Date(Date.now() + 1000 * 86400),
             // secure: true,
             // sameSite: none, // for backend and frontend set to true?
-        })
+        });
+
         // Send user data to frontend
         res.status(201).json({
             _id,
@@ -57,7 +58,7 @@ const registerUser = asyncHandler(async (req, res) => {
             email,
             role,
             token,
-        })
+        });
     } else {
         res.status(400);
         throw new Error("Invalid user data!");
