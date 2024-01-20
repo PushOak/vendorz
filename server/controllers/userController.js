@@ -105,11 +105,35 @@ const loginUser = asyncHandler(async (req, res) => {
         res.status(400);
         throw new Error("Invalid email or password!");
     }
+});
 
+// Logout user
+const logoutUser = asyncHandler(async (req, res) => {
+    res.cookie("token", "", {
+        path: "/",
+        httpOnly: true,
+        expires: new Date(0),
+        // secure: true,
+        // sameSite: none, // for backend and frontend set to true?
+    });
 
+    res.status(200).json({ message: "User logged out successfully!" });
+});
+
+// Get user
+const getUser = asyncHandler(async (req, res) => {
+    const user = await User.findById(req.user._id).select("-password");
+    if (user) {
+        res.status(200).json(user);
+    } else {
+        res.status(400);
+        throw new Error("User not found!");
+    }
 });
 
 module.exports = {
     registerUser,
     loginUser,
+    logoutUser,
+    getUser,
 };
