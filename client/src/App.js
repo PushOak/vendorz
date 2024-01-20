@@ -3,6 +3,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 // Pages
 import Home from "./pages/home/Home";
+import Login from "./pages/auth/Login";
+import Register from "./pages/auth/Register";
 
 // Components 
 import Header from "./components/header/Header";
@@ -16,6 +18,8 @@ const App = () => {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
         <Footer />
       </BrowserRouter>
