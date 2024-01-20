@@ -131,9 +131,46 @@ const getUser = asyncHandler(async (req, res) => {
     }
 });
 
+// Get login status
+const getLoginStatus = asyncHandler(async (req, res) => {
+    const token = req.cookies.token;
+
+    if (!token) {
+        return res.json(false);
+    }
+
+    // Verify token
+    const verified = jwt.verify(token, process.env.JWT_SECRET);
+
+    if (verified) {
+        return res.json(true);
+    }
+    return res.json(true);
+});
+
+// Update user
+const updateUser = asyncHandler(async (req, res) => {
+    const user = await User.findById(req.user._id);
+
+    if (user) {
+        const { name, phone, address } = user;
+        user.name = req.body.name || name;
+        user.phone = req.body.phone || phone;
+        user.address = req.body.address || address;
+
+        const updatedUser = await user.save();
+        res.status(200).json(updatedUser);
+    } else {
+        res.status(404);
+        throw new Error("User not found!");
+    }
+});
+
 module.exports = {
     registerUser,
     loginUser,
     logoutUser,
     getUser,
+    getLoginStatus,
+    updateUser,
 };
