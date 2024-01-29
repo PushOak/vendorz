@@ -19,7 +19,7 @@ app.use(cors({
 }));
 
 // Routes
-app.use("/api/users", userRoute)
+app.use("/api/users", userRoute);
 
 app.get("/", (req, res) => {
     res.send("Home Page");
