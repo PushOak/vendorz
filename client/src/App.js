@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import axios from "axios";
 import { ToastContainer } from "react-toastify";
+import { useDispatch } from "react-redux";
 import "react-toastify/dist/ReactToastify.css";
+import { getLoginStatus } from "./redux/features/auth/authSlice";
 
 // Pages
 import Home from "./pages/home/Home";
@@ -17,6 +19,11 @@ import Loader, { Spinner } from "./components/loader/Loader";
 
 const App = () => {
   axios.defaults.withCredentials = true;
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getLoginStatus());
+  }, [dispatch]);
 
   return (
     <>

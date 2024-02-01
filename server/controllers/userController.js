@@ -133,6 +133,7 @@ const getUser = asyncHandler(async (req, res) => {
 
 // Get login status
 const getLoginStatus = asyncHandler(async (req, res) => {
+    // console.log("getLoginStatus Fired");
     const token = req.cookies.token;
 
     if (!token) {
@@ -141,11 +142,10 @@ const getLoginStatus = asyncHandler(async (req, res) => {
 
     // Verify token
     const verified = jwt.verify(token, process.env.JWT_SECRET);
-
     if (verified) {
         return res.json(true);
     }
-    return res.json(true);
+    return res.json(false);
 });
 
 // Update user
