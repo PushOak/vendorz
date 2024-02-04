@@ -212,7 +212,7 @@ const authSlice = createSlice({
                 state.isLoading = false;
                 state.isSuccess = true;
                 state.isLoggedIn = action.payload;
-                console.log(action.payload);
+                console.log("User login status is", action.payload);
                 if (action.payload.message === "invalid signature") {
                     state.isLoggedIn = false;
                 }
@@ -231,7 +231,7 @@ const authSlice = createSlice({
                 state.isSuccess = true;
                 state.isLoggedIn = true;
                 state.user = action.payload;
-                console.log(action.payload);
+                // console.log(action.payload);
             })
             .addCase(getUser.rejected, (state, action) => {
                 state.isLoading = false;
