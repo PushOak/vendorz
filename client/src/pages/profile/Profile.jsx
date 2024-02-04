@@ -17,7 +17,12 @@ export default function Profile() {
         email: user?.email || "",
         phone: user?.phone || "",
         role: user?.role || "",
-        address: user?.address || {},
+        photo: user?.photo || "",
+        address: user?.address || {
+            address: user?.address?.address || "",
+            state: user?.address?.state || "",
+            country: user?.address?.country || "",
+        },
     };
 
     const [profile, setProfile] = useState(initialState);
@@ -38,7 +43,12 @@ export default function Profile() {
                 email: user?.email || "",
                 phone: user?.phone || "",
                 role: user?.role || "",
-                address: user?.address || {},
+                photo: user?.photo || "",
+                address: user?.address || {
+                    address: user?.address?.address || "",
+                    state: user?.address?.state || "",
+                    country: user?.address?.country || "",
+                },
             });
         }
     }, [dispatch, user]);
