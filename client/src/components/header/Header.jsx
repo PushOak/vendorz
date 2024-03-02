@@ -6,6 +6,7 @@ import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { useDispatch } from "react-redux";
 import { RESET_AUTH, logout } from "../../redux/features/auth/authSlice";
 import ShowOnLogin, { ShowOnLogout } from "../hiddenLink/hiddenLink";
+import { UserName } from "../../pages/profile/Profile";
 
 export const logo = (
     <div className={styles.logo}>
@@ -94,28 +95,35 @@ export default function Header() {
 
                         <div className={styles["header-right"]} onClick={hideMenu}>
                             <span className={styles.links}>
+                                <ShowOnLogin>
+                                    <NavLink to={"login"} className={activeLink}>
+                                        <FaUserCircle size={16} color="#ff7722" />
+                                        <UserName />
+                                    </NavLink>
+                                </ShowOnLogin>
+
                                 <ShowOnLogout>
-                                <NavLink to={"login"} className={activeLink}>
-                                    Login
-                                </NavLink>
+                                    <NavLink to={"login"} className={activeLink}>
+                                        Login
+                                    </NavLink>
                                 </ShowOnLogout>
 
                                 <ShowOnLogout>
-                                <NavLink to={"register"} className={activeLink}>
-                                    Register
-                                </NavLink>
+                                    <NavLink to={"register"} className={activeLink}>
+                                        Register
+                                    </NavLink>
                                 </ShowOnLogout>
 
                                 <ShowOnLogin>
-                                <NavLink to={"order-history"} className={activeLink}>
-                                    My Order
-                                </NavLink>
+                                    <NavLink to={"order-history"} className={activeLink}>
+                                        My Order
+                                    </NavLink>
                                 </ShowOnLogin>
 
                                 <ShowOnLogin>
-                                <Link to={"/"} onClick={logoutUser} >
-                                    Logout
-                                </Link>
+                                    <Link to={"/"} onClick={logoutUser} >
+                                        Logout
+                                    </Link>
                                 </ShowOnLogin>
                             </span>
                             {cart}
